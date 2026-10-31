@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "message": "",
+  "minVersion": 0,
+  "graceDays": 3,
+  "apts": {
+    "대구역 오페라 W (칠성남로 50)": { "status": "free" }
+  },
+  "doorsVersion": 0,
+  "doors": {
+    "대구역 오페라 W (칠성남로 50)": []
+  },
+  "stopMessage": "주차비서 서비스를 종료했어요. 그동안 이용해 주셔서 감사합니다."
+}
