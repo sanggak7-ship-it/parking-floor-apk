@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>주차비서 설치</title>
+<meta name="description" content="주차한 층을 자동으로 기억해 주는 앱, 주차비서 설치 안내">
+<style>
+  :root{
+    --bg:#0E1013; --card:#181B20; --line:#262A31; --text:#EAECEF;
+    --sub:#9AA0A8; --accent:#5B8CFF; --accent2:#2647C7; --ok:#3DCB7F; --amber:#F2B23E;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;
+    line-height:1.6; padding:24px 16px calc(40px + env(safe-area-inset-bottom));}
+  .wrap{max-width:460px;margin:0 auto}
+  .hero{text-align:center;padding:12px 0 4px}
+  .icon{width:108px;height:108px;border-radius:26px;box-shadow:0 10px 30px #0009;display:block;margin:0 auto 16px}
+  h1{font-size:26px;margin:0 0 4px;letter-spacing:-.3px}
+  .tag{color:var(--sub);font-size:15px;margin:0 0 4px}
+  .btn{display:block;width:100%;text-align:center;text-decoration:none;
+    background:linear-gradient(180deg,#5E8CFF,#2647C7);color:#fff;font-weight:700;font-size:18px;
+    padding:16px;border-radius:14px;margin:22px 0 10px;box-shadow:0 6px 18px #2647c766}
+  .btn small{display:block;font-weight:500;font-size:12px;opacity:.85;margin-top:2px}
+  .note{font-size:13px;color:var(--sub);text-align:center;margin:0 0 20px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px;margin:14px 0}
+  .card h2{font-size:15px;margin:0 0 12px;color:var(--sub);font-weight:700}
+  ol{margin:0;padding-left:20px} ol li{margin:8px 0}
+  .pill{display:inline-block;background:#20242B;border:1px solid var(--line);border-radius:999px;
+    padding:3px 10px;font-size:13px;margin:3px 4px 0 0}
+  .warn{border-color:#4a3a12;background:#1d1708}
+  .warn b{color:var(--amber)}
+  .qr{display:flex;gap:14px;align-items:center}
+  #qr{background:#fff;padding:8px;border-radius:10px;width:104px;height:104px;flex:0 0 auto}
+  #qr img,#qr canvas{display:block}
+  .qr p{font-size:13px;color:var(--sub);margin:0}
+  .foot{text-align:center;color:#5b616b;font-size:12px;margin-top:26px}
+  .ios{color:var(--amber)}
+  b.ok{color:var(--ok)}
+  b.warnb{color:var(--amber)}
+  video.intro{display:block;width:72%;max-width:320px;margin:4px auto 6px;border-radius:22px;
+    border:1px solid var(--line);background:#000;box-shadow:0 10px 30px #0008}
+  .steps{display:flex;align-items:flex-start;justify-content:space-between;text-align:center}
+  .step{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px}
+  .step span{font-size:26px;width:54px;height:54px;line-height:54px;border-radius:50%;background:#262A31;margin-bottom:6px}
+  .step b{font-size:14px} .step small{font-size:12px;color:var(--sub)}
+  .steps i{font-style:normal;color:var(--sub);font-size:22px;line-height:54px}
+  .shots{display:flex;gap:12px;overflow-x:auto;padding:4px 2px 10px;margin:14px -2px;scroll-snap-type:x mandatory}
+  .shots figure{flex:0 0 62%;margin:0;scroll-snap-align:center;text-align:center}
+  .shots img{width:100%;border-radius:18px;border:1px solid var(--line);display:block}
+  .shots figcaption{font-size:13px;color:var(--sub);margin-top:6px}
+  .faq details{border-top:1px solid var(--line);padding:10px 0}
+  .faq details:first-of-type{border-top:0}
+  .faq summary{cursor:pointer;font-weight:600;font-size:15px}
+  .faq p{color:var(--sub);font-size:14px;margin:8px 0 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <img class="icon" src="icon.png" alt="주차비서 아이콘">
+    <h1>주차비서</h1>
+    <p class="tag">주차한 층을 <b class="ok">자동으로</b> 기억해 주는 앱</p>
+  </div>
+
+  <a class="btn" href="https://github.com/sanggak7-ship-it/parking-floor-apk/releases/latest/download/parking-floor.apk">
+    📥 안드로이드에 설치하기
+    <small>파일을 받은 뒤 열어서 설치하세요</small>
+  </a>
+  <p class="note ios">※ 아이폰은 설치할 수 없어요 (안드로이드 전용)</p>
+
+  <video class="intro" src="intro.mp4" poster="poster.jpg" controls playsinline preload="metadata"></video>
+
+  <div class="card">
+    <h2>이렇게 기록돼요</h2>
+    <div class="steps">
+      <div class="step"><span>🚗</span><b>차에서 내리면</b><small>블루투스 끊김</small></div>
+      <i>›</i>
+      <div class="step"><span>🚪</span><b>공동현관</b><small>지나가면</small></div>
+      <i>›</i>
+      <div class="step"><span>🔔</span><b>층수</b><small>자동 기록</small></div>
+    </div>
+    <p class="note" style="margin:14px 0 0">버튼을 누를 필요 없어요. 나올 때 알림·위젯만 보면 돼요.</p>
+  </div>
+
+  <div class="shots">
+    <figure><img src="shot-main.jpg" alt="메인 화면" loading="lazy"><figcaption>몇 층인지 한눈에</figcaption></figure>
+    <figure><img src="shot-widget.jpg" alt="홈 화면 위젯" loading="lazy"><figcaption>홈 화면 위젯</figcaption></figure>
+    <figure><img src="shot-help.jpg" alt="도움말" loading="lazy"><figcaption>도움말·신호 등록</figcaption></figure>
+  </div>
+
+  <div class="card">
+    <h2>이런 아파트에서 쓸 수 있어요</h2>
+    <p class="note" style="text-align:left;margin:0">
+      <b class="ok">폰을 들고 다가가면 공동현관이 열리는 아파트</b>(블루투스 출입 장치가 있는 곳)에서 쓸 수 있어요.
+      차에서 내린 뒤 공동현관을 지나가면, 그 출입 장치의 신호로 몇 층인지 알아내 기록해요.
+      앱이 문을 열지는 않아요.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>설치 방법 (1분)</h2>
+    <ol>
+      <li>위 <b>설치하기</b> 버튼을 눌러 파일을 받고, 받은 파일을 눌러 열어요.</li>
+      <li>처음 한 번 <b>"이 출처의 앱 설치 허용"</b>이 나오면 켜고 뒤로 와요.</li>
+      <li><b>"앱 설치가 권장되지 않음"</b> (삼성) → <b>무시하고 설치</b></li>
+      <li><b>"기기 보호를 위해 앱 차단됨"</b> (구글) →
+        <b class="warnb">파란 [확인]은 누르지 마세요!</b><br>
+        <b>세부정보 더보기 ▾</b>를 누르면 아래에 나오는 <b>무시하고 설치하기</b>를 눌러요.</li>
+      <li>앱을 열면 <b>"2가지만 허용해 주세요"</b> → <b>허용하기</b> → 근처 기기·알림 <b>허용</b>. 끝!</li>
+    </ol>
+    <p class="note" style="text-align:left;margin:12px 0 0">
+      경고는 플레이스토어 밖에서 설치해서 뜨는 기본 안내예요. 이 앱은 광고나 개인정보 수집이 없어요.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>권한은 딱 두 개</h2>
+    <span class="pill">🔵 근처 기기(블루투스)</span>
+    <span class="pill">🔔 알림</span>
+    <p class="note" style="text-align:left;margin:12px 0 0">
+      위치 권한은 쓰지 않아요. 현관기 블루투스 신호만 읽어서 "몇 층인지"를 기록해요.
+      <b class="ok">위치·개인정보는 어디에도 전송되지 않아요.</b>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>이 링크를 이웃에게</h2>
+    <div class="qr">
+      <div id="qr"></div>
+      <p>QR을 찍으면 이 설치 페이지로 바로 와요.<br>단톡방에 링크째 공유해도 돼요.</p>
+    </div>
+  </div>
+
+  <div class="card warn">
+    <b>⚠️ 처음 한 번만</b>
+    <p class="note" style="text-align:left;margin:8px 0 0">
+      "출처를 알 수 없는 앱" 경고는 스토어 밖 설치라 뜨는 거예요. 한 번 설치하면
+      그다음 업데이트는 앱이 알아서 받아요. 업데이트할 때마다 다시 설치할 필요 없어요.
+    </p>
+  </div>
+
+  <div class="card faq">
+    <h2>자주 묻는 질문</h2>
+    <details><summary>아이폰도 되나요?</summary><p>아직 안드로이드만 돼요. 아이폰은 앱이 꺼져 있을 때 블루투스 신호를 받을 수 없어서 같은 방식이 어려워요.</p></details>
+    <details><summary>배터리를 많이 쓰나요?</summary><p>평소엔 등록된 공동현관 신호만 저전력으로 기다리고, 차에서 내린 뒤 15분만 빠르게 찾아요.</p></details>
+    <details><summary>위치나 개인정보를 가져가나요?</summary><p>아니요. 위치 권한을 쓰지 않고, 어떤 정보도 밖으로 보내지 않아요. 기록은 내 폰에만 저장돼요.</p></details>
+    <details><summary>층이 기록되지 않아요</summary><p>① 내 차가 앱에 등록됐는지, ② 차에 타면 폰이 차 블루투스에 연결되는지, ③ 폰 블루투스·알림이 켜져 있는지 확인해 주세요. 처음 보는 공동현관이면 앱의 설정 → 공동현관 신호 등록 후 개발자에게 보내 주세요.</p></details>
+    <details><summary>다른 동·다른 아파트도 되나요?</summary><p>대구역 오페라 W는 모든 동이 미리 등록돼 있어요. 다른 아파트는 공동현관 앞에서 신호를 등록하면 쓸 수 있어요.</p></details>
+  </div>
+
+  <p class="foot">같은 아파트 이웃이 만든 앱이에요 · 자동 업데이트 지원 · 개발자 JK</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  try {
+    new QRCode(document.getElementById("qr"), {
+      text: "https://sanggak7-ship-it.github.io/parking-floor-apk/",
+      width: 88, height: 88, colorDark: "#101A30", colorLight: "#ffffff"
+    });
+  } catch (e) {}
+</script>
+</body>
+</html>
