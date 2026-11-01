@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>주차비서 다운로드 현황</title>
+<style>
+  :root{--bg:#0E1013;--card:#181B20;--line:#262A31;--text:#EAECEF;--sub:#9AA0A8;--accent:#5B8CFF;--ok:#3DCB7F}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;padding:24px 16px}
+  .wrap{max-width:460px;margin:0 auto}
+  h1{font-size:20px;margin:0 0 4px} .sub{color:var(--sub);font-size:13px;margin:0 0 18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0}
+  .big{font-size:44px;font-weight:800;color:var(--accent);line-height:1.1}
+  .label{color:var(--sub);font-size:13px}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  td{padding:9px 0;border-top:1px solid var(--line)} td:last-child{text-align:right;font-weight:700}
+  tr:first-child td{border-top:0}
+  .row{display:flex;gap:12px} .row .card{flex:1;margin:0}
+  button{width:100%;padding:13px;border:0;border-radius:12px;background:var(--accent);color:#fff;font-size:15px;font-weight:700;margin-top:6px}
+  .err{color:#ff8a80;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>주차비서 다운로드 현황</h1>
+  <p class="sub" id="when">불러오는 중…</p>
+
+  <div class="row">
+    <div class="card"><div class="label">공개 후 (10/31 19:45~)</div><div class="big" id="after">-</div><div class="label">대략</div></div>
+    <div class="card"><div class="label">전체</div><div class="big" id="total" style="color:var(--text)">-</div><div class="label">테스트 포함</div></div>
+  </div>
+
+  <div class="card"><table id="list"></table></div>
+  <p class="sub">설치 페이지 버튼으로 받은 횟수예요. 같은 사람이 다시 받으면 또 세져요. 앱 안 업데이트는 포함되지 않아요.</p>
+  <button onclick="load()">새로고침</button>
+</div>
+<script>
+  // 단톡방 공개 시각 (KST). 이 시각 전에 최신이던 버전은 공개 이후 분만 대략 셈
+  const LAUNCH = new Date("2026-10-31T19:45:00+09:00");
+  const fmt = d => (d.getMonth()+1) + "/" + d.getDate() + " " + String(d.getHours()).padStart(2,"0") + ":" + String(d.getMinutes()).padStart(2,"0");
+  async function load() {
+    document.getElementById("when").textContent = "불러오는 중…";
+    try {
+      const r = await fetch("https://api.github.com/repos/sanggak7-ship-it/parking-floor-apk/releases?per_page=100");
+      if (!r.ok) throw new Error(r.status === 403 ? "잠시 후 다시 시도해 주세요 (조회 한도)" : "불러오지 못했어요 (" + r.status + ")");
+      const rel = (await r.json()).map(x => ({tag: x.tag_name, at: new Date(x.published_at),
+        n: x.assets.reduce((s, a) => s + a.download_count, 0)})).sort((a, b) => b.at - a.at);
+      let total = 0, after = 0;
+      const rows = rel.map((x, i) => {
+        total += x.n;
+        const until = i > 0 ? rel[i - 1].at : new Date();   // 다음 버전이 나오기 전까지 최신
+        if (until > LAUNCH) after += x.at >= LAUNCH ? x.n : x.n;   // 공개 시각에 걸친 버전은 전부 포함(대략)
+        return `<tr><td>${x.tag}</td><td style="color:var(--sub);font-weight:400">${fmt(x.at)}~</td><td>${x.n}</td></tr>`;
+      });
+      document.getElementById("list").innerHTML = rows.join("");
+      document.getElementById("total").textContent = total;
+      document.getElementById("after").textContent = after;
+      document.getElementById("when").textContent = fmt(new Date()) + " 기준";
+    } catch (e) {
+      document.getElementById("when").innerHTML = `<span class="err">${e.message}</span>`;
+    }
+  }
+  load();
+</script>
+</body>
+</html>
