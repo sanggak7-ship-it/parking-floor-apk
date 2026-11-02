@@ -1,0 +1,27 @@
+{
+  "enabled": true,
+  "report": {
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSdgnoctxF0FaWv0Yx85dpA7JzzlTLmcq_py25g8Ebd1h2aXjw/formResponse",
+    "kind": "entry.102903225", "apt": "entry.792186184", "addr": "entry.148376759",
+    "floor": "entry.1024966763", "dong": "entry.828610047", "etc": "entry.1732887484"
+  },
+  "survey": "https://docs.google.com/forms/d/e/1FAIpQLSc0cENbSiWBXKfMOL-tlmT4nipCgGli2Y5GO0w1IMU1_4IiEQ/viewform",
+  "message": "",
+  "minVersion": 0,
+  "graceDays": 3,
+  "apts": {
+    "대구역 오페라 W (칠성남로 50)": { "status": "free" },
+    "수성포레스트스위첸 (파동로30길 30)": {
+      "status": "free",
+      "floors": ["지하6층", "지하5층", "지하4층", "지하3층", "지하2층", "지하1층"]
+    }
+  },
+  "doorsVersion": 2,
+  "doors": {
+    "대구역 오페라 W (칠성남로 50)": [],
+    "수성포레스트스위첸 (파동로30길 30)": [
+      ["E8:31:CD:AF:82:F2", "지하6층", "112동"]
+    ]
+  },
+  "stopMessage": "주차비서 서비스를 종료했어요. 그동안 이용해 주셔서 감사합니다."
+}
